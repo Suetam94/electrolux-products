@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductDetailsModalComponent } from '../product-details-modal/product-details-modal.component';
 import { Product } from '../../../models/product.model';
-import {ProductService} from "../../../services/product.service";
-import {NumberToPtBrPipe} from "../../../pipes/number-to-pt-br.pipe";
+import { ProductService } from '../../../services/product.service';
+import { NumberToPtBrPipe } from '../../../pipes/number-to-pt-br.pipe';
 
 @Component({
   selector: 'app-table',
@@ -16,38 +16,17 @@ export class TableComponent implements OnInit {
 
   constructor(private productService: ProductService) {}
 
-  items: Product[] = [
-    {
-      id: 1,
-      name: 'Aspirador de Pó',
-      price: 1329.05,
-      category: 'Eletrodomésticos'
-    },
-    {
-      id: 2,
-      name: 'Fritadeira Elétrica',
-      price: 899.99,
-      category: 'Cozinha'
-    },
-    {
-      id: 3,
-      name: 'Ventilador de Mesa',
-      price: 349.9,
-      category: 'Climatização'
-    },
-  ];
+  items: Product[] = [];
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe({
-      next: (data: Product[]) => {
-        if (data.length > 0) {
-          this.items = data;
-        }
+    this.productService.products$.subscribe({
+      next: (products: Product[]) => {
+        this.items = products;
       },
-      error: (error) => {
-        console.log(error);
-      },
+      error: (error) => console.error(error),
     });
+
+    this.productService.loadProducts();
   }
 
   openModal(product: Product): void {
@@ -60,6 +39,4 @@ export class TableComponent implements OnInit {
     this.isModalOpen = false;
     this.selectedProduct = null;
   }
-
-  protected readonly Number = Number;
 }

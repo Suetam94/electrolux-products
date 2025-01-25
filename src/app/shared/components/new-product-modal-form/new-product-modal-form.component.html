@@ -1,0 +1,115 @@
+<!-- Botão para abrir o modal -->
+<div class="text-right mb-4">
+  <button
+    (click)="openModal()"
+    class="bg-electrolux-blue text-white px-4 py-2 rounded hover:bg-electrolux-gray hover:text-electrolux-blue duration-500"
+  >
+    Criar Novo Produto
+  </button>
+</div>
+
+<!-- Modal -->
+@if (isModalOpen) {
+  <div
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+  >
+    <div class="bg-electrolux-gray w-full max-w-3xl rounded-lg shadow-lg p-6">
+      <h2 class="text-lg font-semibold text-gray-700 mb-4">
+        Criar Novo Produto
+      </h2>
+
+      <form [formGroup]="productForm" (ngSubmit)="submitForm()">
+        <!-- Imagem -->
+        <div class="mb-4">
+          <label for="image" class="block text-electrolux-dark-gray font-medium mb-2">Imagem</label>
+          <input
+            type="file"
+            id="image"
+            (change)="onFileSelected($event)"
+            class="w-full border rounded-lg p-2"
+            required
+          />
+          @if (productForm.get('image')?.invalid && productForm.get('image')?.touched) {
+            <div class="text-red-500 text-sm">
+              Imagem é obrigatória.
+            </div>
+          }
+        </div>
+
+        <!-- Nome -->
+        <div class="mb-4">
+          <label for="name" class="block text-electrolux-dark-gray font-medium mb-2">Nome</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            name="name"
+            class="w-full border rounded-lg p-2"
+            required
+          />
+          @if (productForm.get('name')?.invalid && productForm.get('name')?.touched) {
+            <div class="text-red-500 text-sm">
+              Nome é obrigatório e deve ter pelo menos 3 caracteres.
+            </div>
+          }
+        </div>
+
+        <!-- Descrição -->
+        <div class="mb-4">
+          <label for="description" class="block text-electrolux-dark-gray font-medium mb-2">Descrição</label>
+          <textarea
+            id="description"
+            formControlName="description"
+            name="description"
+            class="w-full border rounded-lg p-2 resize-none"
+            rows="5"
+            required
+          ></textarea>
+          @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
+            <div class="text-red-500 text-sm">
+              Descrição é obrigatória.
+            </div>
+          }
+
+        </div>
+
+        <!-- Preço -->
+        <div class="mb-4">
+          <label for="price" class="block text-electrolux-dark-gray font-medium mb-2">Preço</label>
+          <input
+            type="text"
+            id="price"
+            formControlName="price"
+            name="price"
+            class="w-full border rounded-lg p-2"
+            required
+          />
+          @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
+            <div class="text-red-500 text-sm">
+              Preço deve ser maior que 0.
+            </div>
+          }
+        </div>
+
+        <!-- Botões -->
+        <div class="flex justify-end space-x-4">
+          <button
+            type="button"
+            (click)="closeModal()"
+            class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            [disabled]="productForm.invalid"
+            class="bg-electrolux-blue text-white px-4 py-2 rounded hover:filter hover:brightness-125 cursor-pointer"
+          >
+            Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+

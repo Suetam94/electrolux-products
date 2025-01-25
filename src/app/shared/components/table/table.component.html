@@ -1,0 +1,31 @@
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-electrolux-gray border border-gray-200 rounded-lg shadow-md">
+    <thead class="bg-gray-100">
+    <tr>
+      <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Nome</th>
+      <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Preço</th>
+      <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Categoria</th>
+      <th class="px-4 py-2 text-center text-electrolux-dark-gray font-bold">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (item of items; track item.id) {
+        <tr
+          class="border-t border-gray-200 hover:bg-gray-50"
+        >
+          <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.nome }}</td>
+          <td class="px-4 py-2 text-electrolux-dark-gray">R$ {{ item.preco | number: '1.2-2' }}</td>
+          <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.categoria }}</td>
+          <td class="px-4 py-2 text-center">
+            <button
+              class="bg-electrolux-blue text-white px-4 py-1 rounded filter hover:brightness-75 duration-300"
+              (click)="details(item)"
+            >
+              Detalhes
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

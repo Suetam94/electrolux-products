@@ -8,10 +8,7 @@
         <p class="text-electrolux-dark-gray text-lg mb-2">
           <span class="font-bold">Categoria:</span> {{ product?.category }}
         </p>
-        <p class="text-electrolux-dark-gray text-lg mb-4">
-          <span class="font-bold">Descrição:</span> {{ product?.description }}
-        </p>
-        <p class="text-electrolux-blue text-xl font-bold mb-4">R$ {{ product?.price | number: '1.2-2' }}</p>
+        <p class="text-electrolux-blue text-xl font-bold mb-4">R$ {{ product?.price | numberToPtBr }}</p>
       </div>
     </div>
   </div>

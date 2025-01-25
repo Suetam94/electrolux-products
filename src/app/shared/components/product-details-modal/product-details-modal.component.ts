@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
 import { Product } from '../../../models/product.model';
+import {NumberToPtBrPipe} from '../../../pipes/number-to-pt-br.pipe';
 
 @Component({
   selector: 'app-product-details-modal',
   templateUrl: './product-details-modal.component.html',
   styleUrls: ['./product-details-modal.component.scss'],
-  imports: [DecimalPipe],
+  imports: [ NumberToPtBrPipe],
 })
 export class ProductDetailsModalComponent {
   @Input() product: Product | null = null;

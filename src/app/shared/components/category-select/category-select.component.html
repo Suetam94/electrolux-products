@@ -1,0 +1,18 @@
+<div class="max-w-full">
+  <label for="category" class="block text-electrolux-blue font-medium mb-2">
+    Escolha uma Categoria
+  </label>
+  <select
+    id="category"
+    name="category"
+    class="w-full border rounded-lg px-3 py-2 text-electrolux-dark-gray"
+    (change)="onCategoryChange($event)"
+  >
+    <option value="" disabled selected>Selecione uma categoria</option>
+    @for (category of categories; track category.id) {
+      <option>
+        {{ category.name }}
+      </option>
+    }
+  </select>
+</div>

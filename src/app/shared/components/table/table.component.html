@@ -12,7 +12,7 @@
       @for (item of items; track item.id) {
         <tr class="border-t border-gray-200 hover:bg-gray-50">
           <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.name }}</td>
-          <td class="px-4 py-2 text-electrolux-dark-gray">R$ {{ item.price | number: '1.2-2' }}</td>
+          <td class="px-4 py-2 text-electrolux-dark-gray">R$ {{ item.price | numberToPtBr }}</td>
           <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.category }}</td>
           <td class="px-4 py-2 text-center">
             <button

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {DecimalPipe} from '@angular/common';
-import {Router} from '@angular/router';
 import {ProductDetailsModalComponent} from "../product-details-modal/product-details-modal.component";
 
 @Component({

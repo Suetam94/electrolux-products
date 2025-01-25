@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import {Product} from '../../../models/product.model';
+import { Product } from '../../../models/product.model';
 
 @Component({
   selector: 'app-new-product-modal-form',

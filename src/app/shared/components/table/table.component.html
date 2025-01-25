@@ -1,18 +1,16 @@
 <div class="overflow-x-auto">
   <table class="min-w-full bg-electrolux-gray border border-gray-200 rounded-lg shadow-md">
     <thead class="bg-gray-100">
-    <tr>
-      <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Nome</th>
-      <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Preço</th>
-      <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Categoria</th>
-      <th class="px-4 py-2 text-center text-electrolux-dark-gray font-bold">Ações</th>
-    </tr>
+      <tr>
+        <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Nome</th>
+        <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Preço</th>
+        <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Categoria</th>
+        <th class="px-4 py-2 text-center text-electrolux-dark-gray font-bold">Ações</th>
+      </tr>
     </thead>
     <tbody>
       @for (item of items; track item.id) {
-        <tr
-          class="border-t border-gray-200 hover:bg-gray-50"
-        >
+        <tr class="border-t border-gray-200 hover:bg-gray-50">
           <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.name }}</td>
           <td class="px-4 py-2 text-electrolux-dark-gray">R$ {{ item.price | number: '1.2-2' }}</td>
           <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.category }}</td>
@@ -31,8 +29,5 @@
 </div>
 
 @if (isModalOpen) {
-  <app-product-details-modal
-    [product]="selectedProduct"
-    (close)="closeModal()"
-  ></app-product-details-modal>
+  <app-product-details-modal [product]="selectedProduct" (close)="closeModal()"></app-product-details-modal>
 }

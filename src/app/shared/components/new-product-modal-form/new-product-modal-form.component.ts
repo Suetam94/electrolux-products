@@ -13,7 +13,6 @@ export class NewProductModalFormComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.productForm = this.formBuilder.group({
-      image: ['', Validators.required],
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(0.01)]],
@@ -35,14 +34,6 @@ export class NewProductModalFormComponent {
       this.closeModal();
     } else {
       console.log('Form is invalid');
-    }
-  }
-
-  onFileSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      this.productForm.patchValue({ image: file.name });
-      console.log('Selected Image:', file);
     }
   }
 }

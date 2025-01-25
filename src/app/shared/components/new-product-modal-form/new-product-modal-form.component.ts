@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {Product} from '../../../models/product.model';
 
 @Component({
   selector: 'app-new-product-modal-form',
@@ -30,7 +31,8 @@ export class NewProductModalFormComponent {
 
   submitForm(): void {
     if (this.productForm.valid) {
-      console.log('Created Product:', this.productForm.value);
+      const product: Product = this.productForm.value;
+      console.log('Created Product:', product);
       this.closeModal();
     } else {
       console.log('Form is invalid');

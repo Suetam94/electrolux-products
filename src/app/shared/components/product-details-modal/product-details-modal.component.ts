@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {DecimalPipe} from '@angular/common';
+import {Product} from '../../../models/product.model';
 
 @Component({
   selector: 'app-product-details-modal',
@@ -10,7 +11,7 @@ import {DecimalPipe} from '@angular/common';
   ]
 })
 export class ProductDetailsModalComponent {
-  @Input() product: any | null = null;
+  @Input() product: Product | null = null;
   @Output() close = new EventEmitter<void>();
 
   closeModal(): void {

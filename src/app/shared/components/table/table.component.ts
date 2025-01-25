@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {DecimalPipe} from '@angular/common';
 import {ProductDetailsModalComponent} from "../product-details-modal/product-details-modal.component";
+import {Product} from "../../../models/product.model";
 
 @Component({
   selector: 'app-table',
@@ -13,15 +14,33 @@ import {ProductDetailsModalComponent} from "../product-details-modal/product-det
 })
 export class TableComponent {
   isModalOpen = false;
-  selectedProduct: any;
+  selectedProduct: Product | null = null;
 
-  items = [
-    { id: 1,name: 'Aspirador de Pó', price: 1329.05, category: 'Eletrodomésticos', description: 'Isso é um teste de descrição' },
-    { id: 2,name: 'Fritadeira Elétrica', price: 899.99, category: 'Cozinha', description: 'Isso é um teste de descrição' },
-    { id: 3,name: 'Ventilador de Mesa', price: 349.9, category: 'Climatização', description: 'Isso é um teste de descrição' },
+  items: Product[] = [
+    {
+      id: 1,
+      name: 'Aspirador de Pó',
+      price: 1329.05,
+      category: 'Eletrodomésticos',
+      description: 'Isso é um teste de descrição',
+    },
+    {
+      id: 2,
+      name: 'Fritadeira Elétrica',
+      price: 899.99,
+      category: 'Cozinha',
+      description: 'Isso é um teste de descrição',
+    },
+    {
+      id: 3,
+      name: 'Ventilador de Mesa',
+      price: 349.9,
+      category: 'Climatização',
+      description: 'Isso é um teste de descrição',
+    },
   ];
 
-  openModal(product: any): void {
+  openModal(product: Product): void {
     console.log(product)
     this.selectedProduct = product;
     this.isModalOpen = true;

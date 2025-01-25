@@ -1,0 +1,144 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Aspirador de Pó",
+            "description": "O Aspirador de Pó é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Aspirador de Pó se destaca como uma solução prática e confiável.",
+            "price": 1755.0,
+            "category": "Eletrodomésticos"
+        },
+        {
+            "id": 2,
+            "name": "Fritadeira Elétrica",
+            "description": "O Fritadeira Elétrica é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Fritadeira Elétrica se destaca como uma solução prática e confiável.",
+            "price": 1627.22,
+            "category": "Cozinha"
+        },
+        {
+            "id": 3,
+            "name": "Ventilador de Mesa",
+            "description": "O Ventilador de Mesa é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Ventilador de Mesa se destaca como uma solução prática e confiável.",
+            "price": 2315.92,
+            "category": "Eletrodomésticos"
+        },
+        {
+            "id": 4,
+            "name": "Purificador de Água",
+            "description": "O Purificador de Água é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Purificador de Água se destaca como uma solução prática e confiável.",
+            "price": 361.79,
+            "category": "Climatização"
+        },
+        {
+            "id": 5,
+            "name": "Liquidificador Power",
+            "description": "O Liquidificador Power é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Liquidificador Power se destaca como uma solução prática e confiável.",
+            "price": 1984.4,
+            "category": "Climatização"
+        },
+        {
+            "id": 6,
+            "name": "Ar Condicionado Portátil",
+            "description": "O Ar Condicionado Portátil é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Ar Condicionado Portátil se destaca como uma solução prática e confiável.",
+            "price": 656.49,
+            "category": "Climatização"
+        },
+        {
+            "id": 7,
+            "name": "Forno Elétrico",
+            "description": "O Forno Elétrico é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Forno Elétrico se destaca como uma solução prática e confiável.",
+            "price": 2438.97,
+            "category": "Cozinha"
+        },
+        {
+            "id": 8,
+            "name": "Cafeteira Automática",
+            "description": "O Cafeteira Automática é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Cafeteira Automática se destaca como uma solução prática e confiável.",
+            "price": 2178.05,
+            "category": "Eletrodomésticos"
+        },
+        {
+            "id": 9,
+            "name": "Máquina de Lavar Roupa",
+            "description": "O Máquina de Lavar Roupa é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Máquina de Lavar Roupa se destaca como uma solução prática e confiável.",
+            "price": 2062.14,
+            "category": "Climatização"
+        },
+        {
+            "id": 10,
+            "name": "Micro-ondas Digital",
+            "description": "O Micro-ondas Digital é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Micro-ondas Digital se destaca como uma solução prática e confiável.",
+            "price": 1766.97,
+            "category": "Climatização"
+        },
+        {
+            "id": 11,
+            "name": "Chaleira Elétrica",
+            "description": "O Chaleira Elétrica é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Chaleira Elétrica se destaca como uma solução prática e confiável.",
+            "price": 1317.98,
+            "category": "Eletrodomésticos"
+        },
+        {
+            "id": 12,
+            "name": "Panela de Pressão Elétrica",
+            "description": "O Panela de Pressão Elétrica é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Panela de Pressão Elétrica se destaca como uma solução prática e confiável.",
+            "price": 2186.71,
+            "category": "Climatização"
+        },
+        {
+            "id": 13,
+            "name": "Máquina de Secar Roupa",
+            "description": "O Máquina de Secar Roupa é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Máquina de Secar Roupa se destaca como uma solução prática e confiável.",
+            "price": 389.71,
+            "category": "Climatização"
+        },
+        {
+            "id": 14,
+            "name": "Geladeira Frost Free",
+            "description": "O Geladeira Frost Free é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Geladeira Frost Free se destaca como uma solução prática e confiável.",
+            "price": 1119.64,
+            "category": "Climatização"
+        },
+        {
+            "id": 15,
+            "name": "Fogão 4 Bocas",
+            "description": "O Fogão 4 Bocas é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Fogão 4 Bocas se destaca como uma solução prática e confiável.",
+            "price": 1562.45,
+            "category": "Climatização"
+        },
+        {
+            "id": 16,
+            "name": "Lavadora de Alta Pressão",
+            "description": "O Lavadora de Alta Pressão é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Lavadora de Alta Pressão se destaca como uma solução prática e confiável.",
+            "price": 2359.32,
+            "category": "Climatização"
+        },
+        {
+            "id": 17,
+            "name": "Desumidificador de Ar",
+            "description": "O Desumidificador de Ar é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Desumidificador de Ar se destaca como uma solução prática e confiável.",
+            "price": 1136.4,
+            "category": "Cozinha"
+        },
+        {
+            "id": 18,
+            "name": "Torradeira Gourmet",
+            "description": "O Torradeira Gourmet é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Torradeira Gourmet se destaca como uma solução prática e confiável.",
+            "price": 1552.39,
+            "category": "Climatização"
+        },
+        {
+            "id": 19,
+            "name": "Exaustor de Cozinha",
+            "description": "O Exaustor de Cozinha é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Exaustor de Cozinha se destaca como uma solução prática e confiável.",
+            "price": 584.71,
+            "category": "Cozinha"
+        },
+        {
+            "id": 20,
+            "name": "Grill Elétrico",
+            "description": "O Grill Elétrico é uma excelente escolha para quem busca qualidade e eficiência. Desenvolvido com materiais de alta durabilidade, este produto é ideal para o uso diário. Ele combina design moderno com tecnologia de ponta, garantindo uma experiência única. Com recursos avançados e fácil manuseio, o Grill Elétrico se destaca como uma solução prática e confiável.",
+            "price": 1422.84,
+            "category": "Eletrodomésticos"
+        }
+    ]
+}

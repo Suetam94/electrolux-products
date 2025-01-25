@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { ProductDetailsModalComponent } from '../product-details-modal/product-details-modal.component';
 import { Product } from '../../../models/product.model';
+import {ProductService} from "../../../services/product.service";
 
 @Component({
   selector: 'app-table',
@@ -9,9 +10,11 @@ import { Product } from '../../../models/product.model';
   styleUrls: ['./table.component.scss'],
   imports: [DecimalPipe, ProductDetailsModalComponent],
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
   isModalOpen = false;
   selectedProduct: Product | null = null;
+
+  constructor(private productService: ProductService) {}
 
   items: Product[] = [
     {
@@ -36,6 +39,17 @@ export class TableComponent {
       description: 'Isso é um teste de descrição',
     },
   ];
+
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe({
+      next: (data: Product[]) => {
+        if (data.length > 0) {
+          this.items = data;
+        }
+      },
+      error: error => { console.log(error); },
+    })
+  }
 
   openModal(product: Product): void {
     console.log(product);

@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
-import {DecimalPipe} from '@angular/common';
-import {ProductDetailsModalComponent} from "../product-details-modal/product-details-modal.component";
-import {Product} from "../../../models/product.model";
+import { DecimalPipe } from '@angular/common';
+import { ProductDetailsModalComponent } from '../product-details-modal/product-details-modal.component';
+import { Product } from '../../../models/product.model';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  imports: [
-    DecimalPipe,
-    ProductDetailsModalComponent
-  ]
+  imports: [DecimalPipe, ProductDetailsModalComponent],
 })
 export class TableComponent {
   isModalOpen = false;
@@ -41,7 +38,7 @@ export class TableComponent {
   ];
 
   openModal(product: Product): void {
-    console.log(product)
+    console.log(product);
     this.selectedProduct = product;
     this.isModalOpen = true;
   }

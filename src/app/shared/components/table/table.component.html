@@ -13,13 +13,13 @@
         <tr
           class="border-t border-gray-200 hover:bg-gray-50"
         >
-          <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.nome }}</td>
-          <td class="px-4 py-2 text-electrolux-dark-gray">R$ {{ item.preco | number: '1.2-2' }}</td>
-          <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.categoria }}</td>
+          <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.name }}</td>
+          <td class="px-4 py-2 text-electrolux-dark-gray">R$ {{ item.price | number: '1.2-2' }}</td>
+          <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.category }}</td>
           <td class="px-4 py-2 text-center">
             <button
               class="bg-electrolux-blue text-white px-4 py-1 rounded filter hover:brightness-75 duration-300"
-              (click)="details(item)"
+              (click)="openModal(item)"
             >
               Detalhes
             </button>
@@ -29,3 +29,10 @@
     </tbody>
   </table>
 </div>
+
+@if (isModalOpen) {
+  <app-product-details-modal
+    [product]="selectedProduct"
+    (close)="closeModal()"
+  ></app-product-details-modal>
+}

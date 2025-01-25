@@ -19,23 +19,6 @@
       </h2>
 
       <form [formGroup]="productForm" (ngSubmit)="submitForm()">
-        <!-- Imagem -->
-        <div class="mb-4">
-          <label for="image" class="block text-electrolux-dark-gray font-medium mb-2">Imagem</label>
-          <input
-            type="file"
-            id="image"
-            (change)="onFileSelected($event)"
-            class="w-full border rounded-lg p-2"
-            required
-          />
-          @if (productForm.get('image')?.invalid && productForm.get('image')?.touched) {
-            <div class="text-red-500 text-sm">
-              Imagem é obrigatória.
-            </div>
-          }
-        </div>
-
         <!-- Nome -->
         <div class="mb-4">
           <label for="name" class="block text-electrolux-dark-gray font-medium mb-2">Nome</label>

@@ -1,22 +1,35 @@
 import { Component } from '@angular/core';
 import {DecimalPipe} from '@angular/common';
+import {Router} from '@angular/router';
+import {ProductDetailsModalComponent} from "../product-details-modal/product-details-modal.component";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
   imports: [
-    DecimalPipe
+    DecimalPipe,
+    ProductDetailsModalComponent
   ]
 })
 export class TableComponent {
+  isModalOpen = false;
+  selectedProduct: any;
+
   items = [
-    { id: 1,nome: 'Aspirador de Pó', preco: 1329.05, categoria: 'Eletrodomésticos' },
-    { id: 2,nome: 'Fritadeira Elétrica', preco: 899.99, categoria: 'Cozinha' },
-    { id: 3,nome: 'Ventilador de Mesa', preco: 349.9, categoria: 'Climatização' },
+    { id: 1,name: 'Aspirador de Pó', price: 1329.05, category: 'Eletrodomésticos', description: 'Isso é um teste de descrição' },
+    { id: 2,name: 'Fritadeira Elétrica', price: 899.99, category: 'Cozinha', description: 'Isso é um teste de descrição' },
+    { id: 3,name: 'Ventilador de Mesa', price: 349.9, category: 'Climatização', description: 'Isso é um teste de descrição' },
   ];
 
-  details(item: any) {
-    console.log('Detalhes do item:', item);
+  openModal(product: any): void {
+    console.log(product)
+    this.selectedProduct = product;
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.selectedProduct = null;
   }
 }

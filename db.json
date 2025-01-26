@@ -1,0 +1,130 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Aspirador de Pó",
+      "price": 1755,
+      "category": "Eletrodomésticos"
+    },
+    {
+      "id": "2",
+      "name": "Fritadeira Elétrica",
+      "price": 1627.22,
+      "category": "Eletrodomésticos"
+    },
+    {
+      "id": "3",
+      "name": "Ventilador de Mesa",
+      "price": 2315.92,
+      "category": "Eletrodomésticos"
+    },
+    {
+      "id": "4",
+      "name": "Purificador de Água",
+      "price": 361.79,
+      "category": "Eletrodomésticos"
+    },
+    {
+      "id": "5",
+      "name": "Liquidificador Power",
+      "price": 1984.4,
+      "category": "Climatização"
+    },
+    {
+      "id": "6",
+      "name": "Ar Condicionado Portátil",
+      "price": 656.49,
+      "category": "Climatização"
+    },
+    {
+      "id": "7",
+      "name": "Forno Elétrico",
+      "price": 2438.97,
+      "category": "Eletrodomésticos"
+    },
+    {
+      "id": "8",
+      "name": "Cafeteira Automática",
+      "price": 2178.05,
+      "category": "Eletrodomésticos"
+    },
+    {
+      "id": "9",
+      "name": "Máquina de Lavar Roupa",
+      "price": 2062.14,
+      "category": "Climatização"
+    },
+    {
+      "id": "10",
+      "name": "Micro-ondas Digital",
+      "price": 1766.97,
+      "category": "Climatização"
+    },
+    {
+      "id": "11",
+      "name": "Chaleira Elétrica",
+      "price": 1317.98,
+      "category": "Eletrodomésticos"
+    },
+    {
+      "id": "12",
+      "name": "Panela de Pressão Elétrica",
+      "price": 2186.71,
+      "category": "Climatização"
+    },
+    {
+      "id": "13",
+      "name": "Máquina de Secar Roupa",
+      "price": 389.71,
+      "category": "Climatização"
+    },
+    {
+      "id": "14",
+      "name": "Geladeira Frost Free",
+      "price": 1119.64,
+      "category": "Climatização"
+    },
+    {
+      "id": "15",
+      "name": "Fogão 4 Bocas",
+      "price": 1562.45,
+      "category": "Climatização"
+    },
+    {
+      "id": "16",
+      "name": "Lavadora de Alta Pressão",
+      "price": 2359.32,
+      "category": "Climatização"
+    },
+    {
+      "id": "17",
+      "name": "Desumidificador de Ar",
+      "price": 1136.4,
+      "category": "Cozinha"
+    },
+    {
+      "id": "18",
+      "name": "Torradeira Gourmet",
+      "price": 1552.39,
+      "category": "Climatização"
+    },
+    {
+      "id": "19",
+      "name": "Exaustor de Cozinha",
+      "price": 584.71,
+      "category": "Cozinha"
+    },
+    {
+      "id": "20",
+      "name": "Grill Elétrico",
+      "price": 1422.84,
+      "category": "Eletrodomésticos"
+    },
+    {
+      "id": "5085",
+      "name": "Copo de Vidro Morgana",
+      "category": "Utilidades domésticas",
+      "price": 49.9
+    }
+  ]
+}

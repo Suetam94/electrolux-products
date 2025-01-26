@@ -1,12 +1,14 @@
 <!-- Botão para abrir o modal -->
-<div class="text-right mb-4">
-  <button
-    (click)="openModal()"
-    class="bg-electrolux-blue text-white px-4 py-2 rounded hover:bg-electrolux-gray hover:text-electrolux-blue duration-500"
-  >
-    Criar Novo Produto
-  </button>
-</div>
+@if (!editMode) {
+  <div class="text-right mb-4">
+    <button
+      (click)="openModal()"
+      class="bg-electrolux-blue text-white px-4 py-2 rounded hover:bg-electrolux-gray hover:text-electrolux-blue duration-500"
+    >
+      Criar Novo Produto
+    </button>
+  </div>
+}
 
 <!-- Modal -->
 @if (isModalOpen) {
@@ -31,19 +33,16 @@
           }
         </div>
 
-        <!-- Descrição -->
+        <!-- Categoria -->
         <div class="mb-4">
-          <label for="description" class="block text-electrolux-dark-gray font-medium mb-2">Descrição</label>
-          <textarea
-            id="description"
-            formControlName="description"
-            name="description"
-            class="w-full border rounded-lg p-2 resize-none"
-            rows="5"
-            required
-          ></textarea>
-          @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
-            <div class="text-red-500 text-sm">Descrição é obrigatória.</div>
+          <app-category-select
+            [selectedCategoryName]="productForm.get('category')?.value"
+            (categoryChange)="
+              productForm.get('category')?.setValue($event); productForm.get('category')?.markAsTouched()
+            "
+          ></app-category-select>
+          @if (productForm.get('category')?.invalid && productForm.get('category')?.touched) {
+            <div class="text-red-500 text-sm">Categoria é obrigatória e deve ter pelo menos 3 caracteres.</div>
           }
         </div>
 
@@ -51,7 +50,7 @@
         <div class="mb-4">
           <label for="price" class="block text-electrolux-dark-gray font-medium mb-2">Preço</label>
           <input
-            type="text"
+            type="number"
             id="price"
             formControlName="price"
             name="price"
@@ -74,7 +73,6 @@
           </button>
           <button
             type="submit"
-            [disabled]="productForm.invalid"
             class="bg-electrolux-blue text-white px-4 py-2 rounded hover:filter hover:brightness-125 cursor-pointer"
           >
             Salvar

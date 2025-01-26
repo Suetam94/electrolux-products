@@ -1,0 +1,12 @@
+select {
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  &:focus {
+    border-color: #011e41; // Electrolux Blue
+    outline: none;
+  }
+}
+
+option {
+  color: #011e41; // Electrolux Blue
+}

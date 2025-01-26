@@ -1,15 +1,52 @@
-<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-  <div class="bg-white w-full max-w-4xl rounded-lg shadow-lg p-6 relative">
-    <button class="absolute top-4 right-4 text-gray-400 hover:text-red-500" (click)="closeModal()">✖</button>
-    <div class="flex justify-around gap-6">
-      <!-- Detalhes -->
-      <div class="w-full">
-        <h1 class="text-electrolux-blue text-2xl font-bold mb-4">{{ product?.name }}</h1>
-        <p class="text-electrolux-dark-gray text-lg mb-2">
-          <span class="font-bold">Categoria:</span> {{ product?.category }}
-        </p>
-        <p class="text-electrolux-blue text-xl font-bold mb-4">R$ {{ product?.price | numberToPtBr }}</p>
+@if (isDetailsModalOpen) {
+  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white w-full max-w-4xl rounded-lg shadow-lg p-6 relative">
+      <button class="absolute top-4 right-4 text-gray-400 hover:text-red-500" (click)="closeModal()">✖</button>
+      <div class="flex justify-around gap-6">
+        <!-- Detalhes -->
+        <div class="w-full">
+          <h1 class="text-electrolux-blue text-2xl font-bold mb-4">{{ product.name }}</h1>
+          <p class="text-electrolux-dark-gray text-lg mb-2">
+            <span class="font-bold">Categoria:</span> {{ product.category }}
+          </p>
+          <p class="text-electrolux-blue text-xl font-bold mb-4">R$ {{ product.price | numberToPtBr }}</p>
+          <div class="flex space-x-4">
+            <!-- Botão Atualizar -->
+            <button
+              class="bg-electrolux-blue text-white px-4 py-2 rounded hover:bg-blue-900 duration-300"
+              (click)="updateProduct()"
+            >
+              Atualizar
+            </button>
+            <!-- Botão Excluir -->
+            <button
+              class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 duration-300"
+              (click)="openConfirmationModal(product)"
+            >
+              Excluir
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}
+
+@if (isConfirmationModalOpen) {
+  <app-confirmation-modal
+    [title]="'Excluir Produto'"
+    [message]="'Tem certeza que deseja excluir este produto?'"
+    [confirmButtonText]="'Sim, excluir'"
+    [cancelButtonText]="'Cancelar'"
+    (confirm)="deleteProduct()"
+    (dismiss)="closeConfirmationModal()"
+  ></app-confirmation-modal>
+}
+
+<app-new-product-modal-form
+  [isModalOpen]="isFormModalOpen"
+  [editMode]="true"
+  [product]="product"
+  (close)="closeFormModal()"
+  (save)="onSaveProduct($event)"
+></app-new-product-modal-form>

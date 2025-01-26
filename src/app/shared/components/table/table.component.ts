@@ -3,7 +3,7 @@ import { ProductDetailsModalComponent } from '../product-details-modal/product-d
 import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service';
 import { NumberToPtBrPipe } from '../../../pipes/number-to-pt-br.pipe';
-import {CeilPipe} from "../../../pipes/ceil.pipe";
+import { CeilPipe } from '../../../pipes/ceil.pipe';
 
 @Component({
   selector: 'app-table',
@@ -56,7 +56,6 @@ export class TableComponent implements OnInit {
   }
 
   openModal(product: Product): void {
-    console.log(product);
     this.selectedProduct = product;
     this.isModalOpen = true;
   }

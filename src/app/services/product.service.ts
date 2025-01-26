@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, Observable, tap} from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Product } from '../models/product.model';
 
 @Injectable({
@@ -29,7 +29,7 @@ export class ProductService {
       this.productsSource.next(this.allProducts);
     } else {
       const filteredProducts = this.allProducts.filter((product) =>
-        product.name.toLowerCase().includes(name.toLowerCase())
+        product.name.toLowerCase().includes(name.toLowerCase()),
       );
       this.productsSource.next(filteredProducts);
     }
@@ -40,19 +40,21 @@ export class ProductService {
       tap((newProduct) => {
         this.allProducts = [...this.allProducts, newProduct];
         this.productsSource.next(this.allProducts);
-      })
+      }),
     );
   }
 
-  updateProduct(id: number, product: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.apiUrl}/${id}`, product).pipe(
-      tap((updatedProduct) => {
-        this.allProducts = this.allProducts.map((p) =>
-          p.id === id ? updatedProduct : p
-        );
-        this.productsSource.next(this.allProducts);
-      })
-    );
+  updateProduct(product: Product): void {
+    this.http.put<Product>(`${this.apiUrl}/${product.id}`, product).subscribe({
+      next: (updatedProduct) => {
+        const index = this.allProducts.findIndex((p) => p.id === updatedProduct.id);
+        if (index !== -1) {
+          this.allProducts[index] = updatedProduct;
+          this.productsSource.next([...this.allProducts]);
+        }
+      },
+      error: (error) => console.error('Erro ao atualizar o produto:', error),
+    });
   }
 
   deleteProduct(id: number): Observable<void> {
@@ -60,8 +62,7 @@ export class ProductService {
       tap(() => {
         this.allProducts = this.allProducts.filter((p) => p.id !== id);
         this.productsSource.next(this.allProducts);
-      })
+      }),
     );
   }
-
 }

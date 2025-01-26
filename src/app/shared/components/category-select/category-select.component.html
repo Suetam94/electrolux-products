@@ -1,16 +1,15 @@
 <div class="max-w-full">
-  <label for="category" class="block text-electrolux-blue font-medium mb-2">
-    Escolha uma Categoria
-  </label>
+  <label for="category" class="block text-electrolux-blue font-medium mb-2"> Escolha uma Categoria </label>
   <select
     id="category"
     name="category"
     class="w-full border rounded-lg px-3 py-2 text-electrolux-dark-gray"
-    (change)="onCategoryChange($event)"
+    [ngModel]="selectedCategoryName"
+    (ngModelChange)="onCategoryChange($event)"
   >
-    <option value="" disabled selected>Selecione uma categoria</option>
+    <option value="" disabled>Selecione uma categoria</option>
     @for (category of categories; track category.id) {
-      <option>
+      <option [value]="category.name">
         {{ category.name }}
       </option>
     }

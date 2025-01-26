@@ -1,14 +1,22 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Category } from '../../../models/category.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-category-select',
   templateUrl: './category-select.component.html',
   styleUrls: ['./category-select.component.scss'],
+  imports: [FormsModule],
 })
-export class CategorySelectComponent {
+export class CategorySelectComponent implements OnInit {
   @Input() selectedCategoryName: string | null = null;
   @Output() categoryChange = new EventEmitter<string>();
+
+  ngOnInit(): void {
+    if (!this.selectedCategoryName && this.categories.length > 0) {
+      this.selectedCategoryName = '';
+    }
+  }
 
   categories: Category[] = [
     { id: 1, name: 'Eletrodomésticos' },
@@ -17,8 +25,7 @@ export class CategorySelectComponent {
     { id: 4, name: 'Peças e Acessórios' },
   ];
 
-  onCategoryChange(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.categoryChange.emit(target.value);
+  onCategoryChange(category: string): void {
+    this.categoryChange.emit(category);
   }
 }

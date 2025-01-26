@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service';
-import {CategorySelectComponent} from "../category-select/category-select.component";
+import { CategorySelectComponent } from '../category-select/category-select.component';
 
 @Component({
   selector: 'app-new-product-modal-form',
@@ -10,8 +10,13 @@ import {CategorySelectComponent} from "../category-select/category-select.compon
   templateUrl: './new-product-modal-form.component.html',
   styleUrls: ['./new-product-modal-form.component.scss'],
 })
-export class NewProductModalFormComponent {
-  isModalOpen = false;
+export class NewProductModalFormComponent implements OnChanges {
+  @Input() isModalOpen = false;
+  @Input() product: Product | null = null;
+  @Input() editMode = false;
+  @Output() close = new EventEmitter<void>();
+  @Output() save = new EventEmitter<Product>();
+
   productForm: FormGroup;
 
   constructor(
@@ -25,33 +30,52 @@ export class NewProductModalFormComponent {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['product'] && this.product && this.editMode) {
+      this.productForm.patchValue(this.product);
+    }
+  }
+
   openModal(): void {
     this.isModalOpen = true;
   }
 
   closeModal(): void {
+    this.close.emit();
     this.isModalOpen = false;
-    this.productForm.reset();
+    if (!this.editMode) {
+      this.productForm.reset();
+    }
   }
 
   submitForm(): void {
     if (this.productForm.valid) {
-      const product: Product = this.productForm.value;
-      this.productService.createProduct(product).subscribe({
-        next: (product: Product) => {
-          console.log('Product created', product);
-          this.productForm.reset();
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-      console.log('Created Product:', product);
-      this.closeModal();
+      if (this.editMode) {
+        const updateProduct = { ...this.product, ...this.productForm.value };
+        this.save.emit(updateProduct);
+        return;
+      }
+
+      this.createProduct();
     } else {
       this.markFormFieldsAsTouched(this.productForm);
       console.log('Form is invalid');
     }
+  }
+
+  createProduct(): void {
+    const product: Product = this.productForm.value;
+    this.productService.createProduct(product).subscribe({
+      next: (product: Product) => {
+        console.log('Product created', product);
+        this.productForm.reset();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+    console.log('Created Product:', product);
+    this.closeModal();
   }
 
   private markFormFieldsAsTouched(formGroup: FormGroup): void {

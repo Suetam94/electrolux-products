@@ -14,7 +14,11 @@
           [ngModel]="searchTerm"
           (input)="onInputChange($event)"
         />
-        <button (click)="onInputChange(this.event)" type="button" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-electrolux-blue">
+        <button
+          (click)="onInputChange(this.event)"
+          type="button"
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 text-electrolux-blue"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path
               fill-rule="evenodd"

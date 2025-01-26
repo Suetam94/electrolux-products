@@ -10,7 +10,7 @@
       "id": "2",
       "name": "Fritadeira Elétrica",
       "price": 1627.22,
-      "category": "Cozinha"
+      "category": "Eletrodomésticos"
     },
     {
       "id": "3",
@@ -22,7 +22,7 @@
       "id": "4",
       "name": "Purificador de Água",
       "price": 361.79,
-      "category": "Climatização"
+      "category": "Eletrodomésticos"
     },
     {
       "id": "5",
@@ -40,7 +40,7 @@
       "id": "7",
       "name": "Forno Elétrico",
       "price": 2438.97,
-      "category": "Cozinha"
+      "category": "Eletrodomésticos"
     },
     {
       "id": "8",
@@ -121,10 +121,10 @@
       "category": "Eletrodomésticos"
     },
     {
-      "id": "26eb",
-      "name": "Grapes",
-      "category": "Eletrodomésticos",
-      "price": 12
+      "id": "5085",
+      "name": "Copo de Vidro Morgana",
+      "category": "Utilidades domésticas",
+      "price": 49.9
     }
   ]
 }

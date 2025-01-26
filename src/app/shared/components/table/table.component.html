@@ -28,23 +28,25 @@
   </table>
 </div>
 <div class="flex justify-between mt-4">
-    <button
-            class="bg-electrolux-blue text-white px-4 py-1 rounded filter hover:brightness-75 duration-300"
-            (click)="previousPage()"
-            [disabled]="currentPage === 1"
-    >
-        Página Anterior
-    </button>
-    <span>Página {{ currentPage }} de {{ (totalProducts / pageSize) | ceil }}</span>
-    <button
-            class="bg-electrolux-blue text-white px-4 py-1 rounded filter hover:brightness-75 duration-300"
-            (click)="nextPage()"
-            [disabled]="currentPage * pageSize >= totalProducts"
-    >
-        Próxima Página
-    </button>
+  <button
+    class="bg-electrolux-blue text-white px-4 py-1 rounded filter hover:brightness-75 duration-300"
+    (click)="previousPage()"
+    [disabled]="currentPage === 1"
+  >
+    Página Anterior
+  </button>
+  <span>Página {{ currentPage }} de {{ totalProducts / pageSize | ceil }}</span>
+  <button
+    class="bg-electrolux-blue text-white px-4 py-1 rounded filter hover:brightness-75 duration-300"
+    (click)="nextPage()"
+    [disabled]="currentPage * pageSize >= totalProducts"
+  >
+    Próxima Página
+  </button>
 </div>
 
-@if (isModalOpen) {
-  <app-product-details-modal [product]="selectedProduct" (close)="closeModal()"></app-product-details-modal>
-}
+<app-product-details-modal
+  [isDetailsModalOpen]="isModalOpen"
+  [product]="selectedProduct!"
+  (close)="closeModal()"
+></app-product-details-modal>

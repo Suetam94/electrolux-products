@@ -82,3 +82,10 @@
     </div>
   </div>
 }
+
+<app-feedback-modal
+  [isOpen]="feedbackModalProperties.isOpen"
+  [message]="feedbackModalProperties.message"
+  [type]="feedbackModalProperties.type"
+  (close)="(feedbackModalProperties.close)"
+></app-feedback-modal>

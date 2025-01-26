@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { Product } from '../models/product.model';
 
 @Injectable({
@@ -44,7 +44,22 @@ export class ProductService {
     );
   }
 
-  updateProduct(product: Product): void {
+  // updateProduct(product: Product): void {
+  //   this.http.put<Product>(`${this.apiUrl}/${product.id}`, product).subscribe({
+  //     next: (updatedProduct) => {
+  //       const index = this.allProducts.findIndex((p) => p.id === updatedProduct.id);
+  //       if (index !== -1) {
+  //         this.allProducts[index] = updatedProduct;
+  //         this.productsSource.next([...this.allProducts]);
+  //       }
+  //     },
+  //     error: (error) => console.error('Erro ao atualizar o produto:', error),
+  //   });
+  // }
+
+  updateProduct(product: Product): Subject<'success' | 'error'> {
+    const resultSubject = new Subject<'success' | 'error'>();
+
     this.http.put<Product>(`${this.apiUrl}/${product.id}`, product).subscribe({
       next: (updatedProduct) => {
         const index = this.allProducts.findIndex((p) => p.id === updatedProduct.id);
@@ -52,9 +67,17 @@ export class ProductService {
           this.allProducts[index] = updatedProduct;
           this.productsSource.next([...this.allProducts]);
         }
+        resultSubject.next('success'); // Emite sucesso
+        resultSubject.complete(); // Completa o fluxo
       },
-      error: (error) => console.error('Erro ao atualizar o produto:', error),
+      error: (error) => {
+        console.error('Erro ao atualizar o produto:', error);
+        resultSubject.next('error'); // Emite erro
+        resultSubject.complete(); // Completa o fluxo
+      },
     });
+
+    return resultSubject;
   }
 
   deleteProduct(id: number): Observable<void> {

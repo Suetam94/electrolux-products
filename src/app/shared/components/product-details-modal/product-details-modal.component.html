@@ -50,3 +50,10 @@
   (close)="closeFormModal()"
   (save)="onSaveProduct($event)"
 ></app-new-product-modal-form>
+
+<app-feedback-modal
+  [isOpen]="feedbackModalProperties.isOpen"
+  [message]="feedbackModalProperties.message"
+  [type]="feedbackModalProperties.type"
+  (close)="(feedbackModalProperties.close)"
+></app-feedback-modal>

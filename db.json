@@ -34,7 +34,7 @@
       "id": "6",
       "name": "Ar Condicionado Portátil",
       "price": 656.49,
-      "category": "Climatização"
+      "category": "Eletrodomésticos"
     },
     {
       "id": "7",
@@ -112,7 +112,7 @@
       "id": "19",
       "name": "Exaustor de Cozinha",
       "price": 584.71,
-      "category": "Cozinha"
+      "category": "Utilidades domésticas"
     },
     {
       "id": "20",
@@ -121,10 +121,10 @@
       "category": "Eletrodomésticos"
     },
     {
-      "id": "5085",
-      "name": "Copo de Vidro Morgana",
-      "category": "Utilidades domésticas",
-      "price": 49.9
+      "id": "35e1",
+      "name": "Geladeira Portátil",
+      "category": "Eletroportáteis",
+      "price": 500
     }
   ]
 }

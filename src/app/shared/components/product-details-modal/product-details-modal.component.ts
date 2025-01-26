@@ -4,12 +4,14 @@ import { NumberToPtBrPipe } from '../../../pipes/number-to-pt-br.pipe';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 import { ProductService } from '../../../services/product.service';
 import { NewProductModalFormComponent } from '../new-product-modal-form/new-product-modal-form.component';
+import { FeedbackModalModel } from '../../../models/feedback-modal.model';
+import { FeedbackModalComponent } from '../feedback-modal/feedback-modal.component';
 
 @Component({
   selector: 'app-product-details-modal',
   templateUrl: './product-details-modal.component.html',
   styleUrls: ['./product-details-modal.component.scss'],
-  imports: [NumberToPtBrPipe, ConfirmationModalComponent, NewProductModalFormComponent],
+  imports: [NumberToPtBrPipe, ConfirmationModalComponent, NewProductModalFormComponent, FeedbackModalComponent],
 })
 export class ProductDetailsModalComponent {
   @Input() product!: Product;
@@ -18,6 +20,12 @@ export class ProductDetailsModalComponent {
   isConfirmationModalOpen = false;
   productToDelete: Product | null = null;
   isFormModalOpen = false;
+  feedbackModalProperties: FeedbackModalModel = {
+    isOpen: false,
+    message: '',
+    close: () => this.onFeedbackModalClose(),
+    type: 'success',
+  };
 
   constructor(private productService: ProductService) {}
 
@@ -31,8 +39,35 @@ export class ProductDetailsModalComponent {
     this.productToDelete = null;
   }
 
+  onFeedbackModalClose(): void {
+    this.feedbackModalProperties.isOpen = false;
+    this.closeModal();
+  }
+
   onSaveProduct(product: Product): void {
-    this.productService.updateProduct(product);
+    this.productService.updateProduct(product).subscribe((status) => {
+      if (status === 'success') {
+        this.feedbackModalProperties = {
+          isOpen: true,
+          type: 'success',
+          message: `Produto ${product.name} atualizado com sucesso!`,
+          close: () => {
+            this.onFeedbackModalClose();
+          },
+        };
+        this.close.emit();
+      } else {
+        this.feedbackModalProperties = {
+          isOpen: true,
+          type: 'error',
+          message: `Erro ao tentar atualizar o produto ${product.name}.`,
+          close: () => {
+            this.onFeedbackModalClose();
+          },
+        };
+        this.close.emit();
+      }
+    });
     this.isFormModalOpen = false;
   }
 
@@ -54,11 +89,29 @@ export class ProductDetailsModalComponent {
     if (this.productToDelete) {
       this.productService.deleteProduct(this.productToDelete.id).subscribe({
         next: () => {
-          console.log('Deleting product');
+          this.feedbackModalProperties = {
+            isOpen: true,
+            type: 'success',
+            message: `Produto ${this.productToDelete?.name} deletado com sucesso!`,
+            close: () => {
+              this.onFeedbackModalClose();
+            },
+          };
+          this.close.emit();
         },
-        error: (error) => console.log(error),
+        error: (err) => {
+          console.error(err);
+          this.feedbackModalProperties = {
+            isOpen: true,
+            type: 'error',
+            message: `Erro ao tentar deletar o produto ${this.product.name}.`,
+            close: () => {
+              this.onFeedbackModalClose();
+            },
+          };
+          this.close.emit();
+        },
       });
-      console.log(`Produto excluído: ${this.productToDelete.name}`);
     }
     this.closeConfirmationModal();
   }

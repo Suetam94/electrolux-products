@@ -1,26 +1,26 @@
 @if (isDetailsModalOpen) {
   <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white w-full max-w-4xl rounded-lg shadow-lg p-6 relative">
-      <button class="absolute top-4 right-4 text-gray-400 hover:text-red-500" (click)="closeModal()">✖</button>
-      <div class="flex justify-around gap-6">
+    <div class="bg-white w-full max-w-lg sm:max-w-4xl rounded-lg shadow-lg p-4 sm:p-6 relative">
+      <button class="absolute top-2 sm:top-4 right-2 sm:right-4 text-gray-400 hover:text-red-500" (click)="closeModal()">✖</button>
+      <div class="flex flex-col sm:flex-row justify-around gap-4 sm:gap-6">
         <!-- Detalhes -->
         <div class="w-full">
-          <h1 class="text-electrolux-blue text-2xl font-bold mb-4">{{ product.name }}</h1>
-          <p class="text-electrolux-dark-gray text-lg mb-2">
+          <h1 class="text-electrolux-blue text-xl sm:text-2xl font-bold mb-2 sm:mb-4">{{ product.name }}</h1>
+          <p class="text-electrolux-dark-gray text-sm sm:text-lg mb-1 sm:mb-2">
             <span class="font-bold">Categoria:</span> {{ product.category }}
           </p>
-          <p class="text-electrolux-blue text-xl font-bold mb-4">R$ {{ product.price | numberToPtBr }}</p>
-          <div class="flex space-x-4">
+          <p class="text-electrolux-blue text-lg sm:text-xl font-bold mb-2 sm:mb-4">R$ {{ product.price | numberToPtBr }}</p>
+          <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
             <!-- Botão Atualizar -->
             <button
-              class="bg-electrolux-blue text-white px-4 py-2 rounded hover:bg-blue-900 duration-300"
+              class="bg-electrolux-blue text-white px-4 py-2 text-sm sm:text-base rounded hover:bg-blue-900 duration-300"
               (click)="updateProduct()"
             >
               Atualizar
             </button>
             <!-- Botão Excluir -->
             <button
-              class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 duration-300"
+              class="bg-red-500 text-white px-4 py-2 text-sm sm:text-base rounded hover:bg-red-600 duration-300"
               (click)="openConfirmationModal(product)"
             >
               Excluir
@@ -50,3 +50,10 @@
   (close)="closeFormModal()"
   (save)="onSaveProduct($event)"
 ></app-new-product-modal-form>
+
+<app-feedback-modal
+  [isOpen]="feedbackModalProperties.isOpen"
+  [message]="feedbackModalProperties.message"
+  [type]="feedbackModalProperties.type"
+  (close)="(feedbackModalProperties.close)"
+></app-feedback-modal>

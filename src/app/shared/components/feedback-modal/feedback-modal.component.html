@@ -1,0 +1,22 @@
+@if (isOpen) {
+  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4 sm:px-0">
+    <div
+      class="bg-white w-full max-w-sm sm:max-w-md rounded-lg shadow-lg p-4 sm:p-6 relative"
+      [ngClass]="{ 'border-green-500': type === 'success', 'border-red-500': type === 'error' }"
+    >
+      <h2
+        class="text-lg sm:text-xl font-bold mb-2 sm:mb-4"
+        [ngClass]="{ 'text-green-500': type === 'success', 'text-red-500': type === 'error' }"
+      >
+        {{ type === 'success' ? 'Sucesso!' : 'Erro!' }}
+      </h2>
+      <p class="mb-4 sm:mb-6 text-sm sm:text-base">{{ message }}</p>
+      <button
+        class="bg-electrolux-blue text-white px-3 sm:px-4 py-2 rounded hover:bg-blue-900 duration-300 w-full text-sm sm:text-base"
+        (click)="closeModal()"
+      >
+        Fechar
+      </button>
+    </div>
+  </div>
+}

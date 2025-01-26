@@ -1,22 +1,22 @@
 <div class="overflow-x-auto h-full">
-  <table class="min-w-full bg-electrolux-gray border border-gray-200 rounded-lg shadow-md">
+  <table class="min-w-full bg-electrolux-gray border border-gray-200 rounded-lg shadow-md text-sm sm:text-base">
     <thead class="bg-gray-100">
       <tr>
-        <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Nome</th>
-        <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Preço</th>
-        <th class="px-4 py-2 text-left text-electrolux-dark-gray font-bold">Categoria</th>
-        <th class="px-4 py-2 text-center text-electrolux-dark-gray font-bold">Ações</th>
+        <th class="px-2 sm:px-4 py-1 sm:py-2 text-left text-electrolux-dark-gray font-bold">Nome</th>
+        <th class="px-2 sm:px-4 py-1 sm:py-2 text-left text-electrolux-dark-gray font-bold">Preço</th>
+        <th class="px-2 sm:px-4 py-1 sm:py-2 text-left text-electrolux-dark-gray font-bold">Categoria</th>
+        <th class="px-2 sm:px-4 py-1 sm:py-2 text-center text-electrolux-dark-gray font-bold">Ações</th>
       </tr>
     </thead>
     <tbody>
       @for (item of displayedItems; track item.id) {
         <tr class="border-t border-gray-200 hover:bg-gray-50">
-          <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.name }}</td>
-          <td class="px-4 py-2 text-electrolux-dark-gray">R$ {{ item.price | numberToPtBr }}</td>
-          <td class="px-4 py-2 text-electrolux-dark-gray">{{ item.category }}</td>
-          <td class="px-4 py-2 text-center">
+          <td class="px-2 sm:px-4 py-1 sm:py-2 text-electrolux-dark-gray">{{ item.name }}</td>
+          <td class="px-2 sm:px-4 py-1 sm:py-2 text-electrolux-dark-gray">R$ {{ item.price | numberToPtBr }}</td>
+          <td class="px-2 sm:px-4 py-1 sm:py-2 text-electrolux-dark-gray">{{ item.category }}</td>
+          <td class="px-2 sm:px-4 py-1 sm:py-2 text-center">
             <button
-              class="bg-electrolux-blue text-white px-4 py-1 rounded filter hover:brightness-75 duration-300"
+              class="bg-electrolux-blue text-white px-2 sm:px-4 py-1 sm:py-1 rounded filter hover:brightness-75 duration-300"
               (click)="openModal(item)"
             >
               Detalhes
@@ -27,17 +27,17 @@
     </tbody>
   </table>
 </div>
-<div class="flex justify-between mt-4">
+<div class="flex flex-col sm:flex-row justify-between mt-4 space-y-2 sm:space-y-0 sm:space-x-4">
   <button
-    class="bg-electrolux-blue text-white px-4 py-1 rounded filter hover:brightness-75 duration-300"
+    class="bg-electrolux-blue text-white px-2 sm:px-4 py-1 sm:py-1 rounded filter hover:brightness-75 duration-300"
     (click)="previousPage()"
     [disabled]="currentPage === 1"
   >
     Página Anterior
   </button>
-  <span>Página {{ currentPage }} de {{ totalProducts / pageSize | ceil }}</span>
+  <span class="text-center">Página {{ currentPage }} de {{ totalProducts / pageSize | ceil }}</span>
   <button
-    class="bg-electrolux-blue text-white px-4 py-1 rounded filter hover:brightness-75 duration-300"
+    class="bg-electrolux-blue text-white px-2 sm:px-4 py-1 sm:py-1 rounded filter hover:brightness-75 duration-300"
     (click)="nextPage()"
     [disabled]="currentPage * pageSize >= totalProducts"
   >

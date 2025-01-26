@@ -7,7 +7,7 @@ import { Product } from '../models/product.model';
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/products';
+  apiUrl = 'http://localhost:3000/products';
   private allProducts: Product[] = [];
   private productsSource = new BehaviorSubject<Product[]>([]);
   products$ = this.productsSource.asObservable();

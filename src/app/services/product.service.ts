@@ -15,7 +15,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   loadProducts(): void {
-    this.http.get<Product[]>(this.apiUrl).subscribe({
+    this.http.get<Product[]>(`${this.apiUrl}?_sort=createdAt&_order=desc`).subscribe({
       next: (products: Product[]) => {
         this.allProducts = products;
         this.productsSource.next(products);
@@ -35,27 +35,28 @@ export class ProductService {
     }
   }
 
-  createProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.apiUrl, product).pipe(
+  // createProduct(product: Product): Observable<Product> {
+  //   return this.http.post<Product>(this.apiUrl, product).pipe(
+  //     tap((newProduct) => {
+  //       this.allProducts = [...this.allProducts, newProduct];
+  //       this.productsSource.next(this.allProducts);
+  //     }),
+  //   );
+  // }
+
+  createProduct(product: Omit<Product, 'id' | 'createdAt'>): Observable<Product> {
+    const newProduct = {
+      ...product,
+      createdAt: new Date().toISOString(),
+    };
+
+    return this.http.post<Product>(this.apiUrl, newProduct).pipe(
       tap((newProduct) => {
         this.allProducts = [...this.allProducts, newProduct];
         this.productsSource.next(this.allProducts);
       }),
     );
   }
-
-  // updateProduct(product: Product): void {
-  //   this.http.put<Product>(`${this.apiUrl}/${product.id}`, product).subscribe({
-  //     next: (updatedProduct) => {
-  //       const index = this.allProducts.findIndex((p) => p.id === updatedProduct.id);
-  //       if (index !== -1) {
-  //         this.allProducts[index] = updatedProduct;
-  //         this.productsSource.next([...this.allProducts]);
-  //       }
-  //     },
-  //     error: (error) => console.error('Erro ao atualizar o produto:', error),
-  //   });
-  // }
 
   updateProduct(product: Product): Subject<'success' | 'error'> {
     const resultSubject = new Subject<'success' | 'error'>();
@@ -67,13 +68,13 @@ export class ProductService {
           this.allProducts[index] = updatedProduct;
           this.productsSource.next([...this.allProducts]);
         }
-        resultSubject.next('success'); // Emite sucesso
-        resultSubject.complete(); // Completa o fluxo
+        resultSubject.next('success');
+        resultSubject.complete();
       },
       error: (error) => {
         console.error('Erro ao atualizar o produto:', error);
-        resultSubject.next('error'); // Emite erro
-        resultSubject.complete(); // Completa o fluxo
+        resultSubject.next('error');
+        resultSubject.complete();
       },
     });
 

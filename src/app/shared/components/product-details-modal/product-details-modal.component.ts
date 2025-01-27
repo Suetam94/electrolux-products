@@ -6,12 +6,21 @@ import { ProductService } from '../../../services/product.service';
 import { NewProductModalFormComponent } from '../new-product-modal-form/new-product-modal-form.component';
 import { FeedbackModalModel } from '../../../models/feedback-modal.model';
 import { FeedbackModalComponent } from '../feedback-modal/feedback-modal.component';
+import { DatePipe } from '@angular/common';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-product-details-modal',
   templateUrl: './product-details-modal.component.html',
   styleUrls: ['./product-details-modal.component.scss'],
-  imports: [NumberToPtBrPipe, ConfirmationModalComponent, NewProductModalFormComponent, FeedbackModalComponent],
+  imports: [
+    NumberToPtBrPipe,
+    ConfirmationModalComponent,
+    NewProductModalFormComponent,
+    FeedbackModalComponent,
+    DatePipe,
+    LoadingComponent,
+  ],
 })
 export class ProductDetailsModalComponent {
   @Input() product!: Product;
@@ -27,6 +36,8 @@ export class ProductDetailsModalComponent {
     type: 'success',
   };
 
+  isLoading = false;
+
   constructor(private productService: ProductService) {}
 
   openConfirmationModal(product: Product): void {
@@ -41,10 +52,12 @@ export class ProductDetailsModalComponent {
 
   onFeedbackModalClose(): void {
     this.feedbackModalProperties.isOpen = false;
+    this.isLoading = false;
     this.closeModal();
   }
 
   onSaveProduct(product: Product): void {
+    this.isLoading = true;
     this.productService.updateProduct(product).subscribe((status) => {
       if (status === 'success') {
         this.feedbackModalProperties = {
@@ -68,6 +81,7 @@ export class ProductDetailsModalComponent {
         this.close.emit();
       }
     });
+    this.isLoading = false;
     this.isFormModalOpen = false;
   }
 
@@ -85,6 +99,7 @@ export class ProductDetailsModalComponent {
   }
 
   deleteProduct(): void {
+    this.isLoading = true;
     this.isDetailsModalOpen = false;
     if (this.productToDelete) {
       this.productService.deleteProduct(this.productToDelete.id).subscribe({
@@ -92,7 +107,7 @@ export class ProductDetailsModalComponent {
           this.feedbackModalProperties = {
             isOpen: true,
             type: 'success',
-            message: `Produto ${this.productToDelete?.name} deletado com sucesso!`,
+            message: `Produto ${this.product.name} deletado com sucesso!`,
             close: () => {
               this.onFeedbackModalClose();
             },
@@ -114,5 +129,6 @@ export class ProductDetailsModalComponent {
       });
     }
     this.closeConfirmationModal();
+    this.isLoading = false;
   }
 }

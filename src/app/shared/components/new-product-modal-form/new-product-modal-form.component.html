@@ -91,3 +91,7 @@
   [type]="feedbackModalProperties.type"
   (close)="feedbackModalProperties.close()"
 ></app-feedback-modal>
+
+@if (isLoading) {
+  <app-loading [isLoading]="isLoading"></app-loading>
+}

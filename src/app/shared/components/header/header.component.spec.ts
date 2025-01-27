@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header.component';
-import {provideHttpClient} from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -11,7 +11,7 @@ describe('HeaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HeaderComponent, FormsModule],
-      providers: [provideHttpClient()]
+      providers: [provideHttpClient()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);

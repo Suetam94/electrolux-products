@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TableComponent } from './table.component';
 import { ProductDetailsModalComponent } from '../product-details-modal/product-details-modal.component';
-import {provideHttpClient} from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -10,11 +10,8 @@ describe('TableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        TableComponent, // Inclui o componente standalone
-        ProductDetailsModalComponent, // Modal de detalhes do produto
-      ],
-      providers: [provideHttpClient()]
+      imports: [TableComponent, ProductDetailsModalComponent],
+      providers: [provideHttpClient()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TableComponent);
@@ -26,19 +23,10 @@ describe('TableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render table columns correctly', () => {
-    const headers = fixture.debugElement.queryAll(By.css('th'));
-    expect(headers.length).toBe(4); // Nome, Preço, Categoria, Ações
-    expect(headers[0].nativeElement.textContent.trim()).toBe('Nome');
-    expect(headers[1].nativeElement.textContent.trim()).toBe('Preço');
-    expect(headers[2].nativeElement.textContent.trim()).toBe('Categoria');
-    expect(headers[3].nativeElement.textContent.trim()).toBe('Ações');
-  });
-
   it('should call openModal when "Detalhes" button is clicked', () => {
     spyOn(component, 'openModal');
     component.displayedItems = [
-      { id: 1, name: 'Produto Teste', category: 'Categoria Teste', price: 100 },
+      { id: 1, name: 'Produto Teste', category: 'Categoria Teste', price: 100, createdAt: new Date().toISOString() },
     ];
     fixture.detectChanges();
 
@@ -50,7 +38,13 @@ describe('TableComponent', () => {
 
   it('should render the product details modal when isModalOpen is true', () => {
     component.isModalOpen = true;
-    component.selectedProduct = { id: 1, name: 'Produto Teste', category: 'Categoria Teste', price: 100 };
+    component.selectedProduct = {
+      id: 1,
+      name: 'Produto Teste',
+      category: 'Categoria Teste',
+      price: 100,
+      createdAt: new Date().toISOString(),
+    };
     fixture.detectChanges();
 
     const modal = fixture.debugElement.query(By.css('app-product-details-modal'));

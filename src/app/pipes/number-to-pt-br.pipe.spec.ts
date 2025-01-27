@@ -1,4 +1,3 @@
-
 import { NumberToPtBrPipe } from './number-to-pt-br.pipe';
 
 describe('NumberToPtBrPipe', () => {

@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { NewProductModalFormComponent } from './new-product-modal-form.component';
 import { CategorySelectComponent } from '../category-select/category-select.component';
 import { FeedbackModalComponent } from '../feedback-modal/feedback-modal.component';
-import {provideHttpClient} from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('NewProductModalFormComponent', () => {
   let component: NewProductModalFormComponent;
@@ -12,13 +12,8 @@ describe('NewProductModalFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        NewProductModalFormComponent,
-        ReactiveFormsModule,
-        CategorySelectComponent,
-        FeedbackModalComponent,
-      ],
-      providers: [provideHttpClient()]
+      imports: [NewProductModalFormComponent, ReactiveFormsModule, CategorySelectComponent, FeedbackModalComponent],
+      providers: [provideHttpClient()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NewProductModalFormComponent);

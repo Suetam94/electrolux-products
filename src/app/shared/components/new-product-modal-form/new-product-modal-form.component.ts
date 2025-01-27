@@ -5,10 +5,11 @@ import { ProductService } from '../../../services/product.service';
 import { CategorySelectComponent } from '../category-select/category-select.component';
 import { FeedbackModalComponent } from '../feedback-modal/feedback-modal.component';
 import { FeedbackModalModel } from '../../../models/feedback-modal.model';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-new-product-modal-form',
-  imports: [ReactiveFormsModule, CategorySelectComponent, FeedbackModalComponent],
+  imports: [ReactiveFormsModule, CategorySelectComponent, FeedbackModalComponent, LoadingComponent],
   templateUrl: './new-product-modal-form.component.html',
   styleUrls: ['./new-product-modal-form.component.scss'],
 })
@@ -26,6 +27,7 @@ export class NewProductModalFormComponent implements OnChanges {
   };
 
   productForm: FormGroup;
+  isLoading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,10 +63,12 @@ export class NewProductModalFormComponent implements OnChanges {
   }
 
   submitForm(): void {
+    this.isLoading = true;
     if (this.productForm.valid) {
       if (this.editMode) {
         const updateProduct = { ...this.product, ...this.productForm.value };
         this.save.emit(updateProduct);
+        this.isLoading = false
         return;
       }
 
@@ -73,6 +77,7 @@ export class NewProductModalFormComponent implements OnChanges {
       this.markFormFieldsAsTouched(this.productForm);
       console.log('Form is invalid');
     }
+    this.isLoading = false;
   }
 
   createProduct(): void {
@@ -99,7 +104,7 @@ export class NewProductModalFormComponent implements OnChanges {
             this.close.emit();
           },
         };
-      },
+      }
     });
     this.closeModal();
   }

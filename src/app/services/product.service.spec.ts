@@ -17,17 +17,17 @@ describe('ProductService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify();
+    httpMock.verify(); // Garante que não há requisições HTTP pendentes
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should load products', () => {
+  it('should load products', (done) => {
     const mockProducts: Product[] = [
-      { id: 1, name: 'Product 1', category: 'Category 1', price: 100 },
-      { id: 2, name: 'Product 2', category: 'Category 2', price: 200 },
+      { id: 1, name: 'Product 1', category: 'Category 1', price: 100, createdAt: new Date().toISOString() },
+      { id: 2, name: 'Product 2', category: 'Category 2', price: 200, createdAt: new Date().toISOString() },
     ];
 
     service.loadProducts();
@@ -37,48 +37,76 @@ describe('ProductService', () => {
     req.flush(mockProducts);
 
     service.products$.subscribe((products) => {
+      expect(products.length).toBe(mockProducts.length);
       expect(products).toEqual(mockProducts);
+      done(); // Aguarda a execução completa do fluxo assíncrono
     });
   });
 
-  it('should filter products by name', () => {
+  it('should filter products by name', (done) => {
     const mockProducts: Product[] = [
-      { id: 1, name: 'Product 1', category: 'Category 1', price: 100 },
-      { id: 2, name: 'Product 2', category: 'Category 2', price: 200 },
+      { id: 1, name: 'Product 1', category: 'Category 1', price: 100, createdAt: new Date().toISOString() },
+      { id: 2, name: 'Product 2', category: 'Category 2', price: 200, createdAt: new Date().toISOString() },
     ];
     service['allProducts'] = mockProducts;
 
     service.filterProductsByName('Product 1');
 
-    service.filterProductsByName('');
     service.products$.subscribe((products) => {
-      expect(products).toEqual(mockProducts);
+      expect(products).toEqual([mockProducts[0]]);
+      done();
     });
   });
 
-  it('should create a product', () => {
-    const newProduct: Product = { id: 3, name: 'Product 3', category: 'Category 3', price: 300 };
-
-    service.createProduct(newProduct).subscribe((product) => {
-      expect(product).toEqual(newProduct);
-    });
-
-    const req = httpMock.expectOne('http://localhost:3000/products');
-    expect(req.request.method).toBe('POST');
-    req.flush(newProduct);
-
-    service.products$.subscribe((products) => {
-      expect(products).toContain(newProduct);
-    });
-  });
-
-  it('should update a product', () => {
-    service['allProducts'] = [
-      { id: 1, name: 'Product 1', category: 'Category 1', price: 100 },
-      { id: 2, name: 'Product 2', category: 'Category 2', price: 200 },
+  it('should create a product', (done) => {
+    const newProduct: Product = {
+      id: 3,
+      name: 'Product 3',
+      category: 'Category 3',
+      price: 300,
+      createdAt: new Date().toISOString(),
+    };
+    const updatedProductList: Product[] = [
+      { id: 1, name: 'Product 1', category: 'Category 1', price: 100, createdAt: new Date().toISOString() },
+      { id: 2, name: 'Product 2', category: 'Category 2', price: 200, createdAt: new Date().toISOString() },
+      newProduct,
     ];
 
-    const updatedProduct: Product = { id: 1, name: 'Updated Product 1', category: 'Category 1', price: 150 };
+    service.createProduct({ name: 'Product 3', category: 'Category 3', price: 300 }).subscribe((product) => {
+      expect(product).toEqual(newProduct); // Verifica o produto retornado pelo POST
+    });
+
+    // Simula a requisição POST
+    const postReq = httpMock.expectOne('http://localhost:3000/products');
+    expect(postReq.request.method).toBe('POST');
+    postReq.flush(newProduct);
+
+    // Simula a requisição GET disparada por loadProducts()
+    const getReq = httpMock.expectOne('http://localhost:3000/products');
+    expect(getReq.request.method).toBe('GET');
+    getReq.flush(updatedProductList);
+
+    // Verifica se o produto foi adicionado corretamente na lista
+    service.products$.subscribe((products) => {
+      expect(products).toContain(newProduct);
+      done(); // Finaliza o teste
+    });
+  });
+
+  it('should update a product', (done) => {
+    const initialProducts: Product[] = [
+      { id: 1, name: 'Product 1', category: 'Category 1', price: 100, createdAt: new Date().toISOString() },
+      { id: 2, name: 'Product 2', category: 'Category 2', price: 200, createdAt: new Date().toISOString() },
+    ];
+    service['allProducts'] = initialProducts;
+
+    const updatedProduct: Product = {
+      id: 1,
+      name: 'Updated Product 1',
+      category: 'Category 1',
+      price: 150,
+      createdAt: new Date().toISOString(),
+    };
 
     service.updateProduct(updatedProduct).subscribe((status) => {
       expect(status).toBe('success');
@@ -89,14 +117,15 @@ describe('ProductService', () => {
     req.flush(updatedProduct);
 
     service.products$.subscribe((products) => {
-      expect(products).toContain(updatedProduct);
+      expect(products.find((p) => p.id === updatedProduct.id)?.name).toBe(updatedProduct.name); // Confirma pelo nome atualizado
+      done();
     });
   });
 
-  it('should delete a product', () => {
+  it('should delete a product', (done) => {
     service['allProducts'] = [
-      { id: 1, name: 'Product 1', category: 'Category 1', price: 100 },
-      { id: 2, name: 'Product 2', category: 'Category 2', price: 200 },
+      { id: 1, name: 'Product 1', category: 'Category 1', price: 100, createdAt: new Date().toISOString() },
+      { id: 2, name: 'Product 2', category: 'Category 2', price: 200, createdAt: new Date().toISOString() },
     ];
 
     service.deleteProduct(1).subscribe(() => {
@@ -106,5 +135,11 @@ describe('ProductService', () => {
     const req = httpMock.expectOne('http://localhost:3000/products/1');
     expect(req.request.method).toBe('DELETE');
     req.flush({});
+
+    service.products$.subscribe((products) => {
+      expect(products.length).toBe(1);
+      expect(products.find((p) => p.id === 1)).toBeUndefined();
+      done();
+    });
   });
 });

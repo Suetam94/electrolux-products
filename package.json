@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start:json-server": "json-server --watch db.json --port 3000",
+    "start:angular": "ng serve",
+    "start": "concurrently \"npm run start:json-server\" \"npm run start:angular\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "format": "prettier --write \"src/**/*.{ts,html,css,json}\"",
-    "database": "json-server --watch db.json --port 3000"
+    "format": "prettier --write \"src/**/*.{ts,html,css,json}\""
   },
   "private": true,
   "dependencies": {

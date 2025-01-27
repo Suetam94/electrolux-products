@@ -4,12 +4,13 @@ import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service';
 import { NumberToPtBrPipe } from '../../../pipes/number-to-pt-br.pipe';
 import { CeilPipe } from '../../../pipes/ceil.pipe';
+import {NoDataComponent} from "../no-data/no-data.component";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  imports: [ProductDetailsModalComponent, NumberToPtBrPipe, CeilPipe],
+  imports: [ProductDetailsModalComponent, NumberToPtBrPipe, CeilPipe, NoDataComponent],
 })
 export class TableComponent implements OnInit {
   isModalOpen = false;

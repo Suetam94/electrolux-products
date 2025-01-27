@@ -15,14 +15,16 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   loadProducts(): void {
-    this.http.get<Product[]>(`${this.apiUrl}?_sort=createdAt&_order=desc`).subscribe({
+    this.http.get<Product[]>(this.apiUrl).subscribe({
       next: (products: Product[]) => {
         this.allProducts = products;
-        this.productsSource.next(products);
+        this.allProducts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        this.productsSource.next(this.allProducts);
       },
       error: (error) => console.error(error),
     });
   }
+
 
   filterProductsByName(name: string): void {
     if (name.trim() === '') {
@@ -35,15 +37,6 @@ export class ProductService {
     }
   }
 
-  // createProduct(product: Product): Observable<Product> {
-  //   return this.http.post<Product>(this.apiUrl, product).pipe(
-  //     tap((newProduct) => {
-  //       this.allProducts = [...this.allProducts, newProduct];
-  //       this.productsSource.next(this.allProducts);
-  //     }),
-  //   );
-  // }
-
   createProduct(product: Omit<Product, 'id' | 'createdAt'>): Observable<Product> {
     const newProduct = {
       ...product,
@@ -51,12 +44,12 @@ export class ProductService {
     };
 
     return this.http.post<Product>(this.apiUrl, newProduct).pipe(
-      tap((newProduct) => {
-        this.allProducts = [...this.allProducts, newProduct];
-        this.productsSource.next(this.allProducts);
+      tap(() => {
+        this.loadProducts();
       }),
     );
   }
+
 
   updateProduct(product: Product): Subject<'success' | 'error'> {
     const resultSubject = new Subject<'success' | 'error'>();

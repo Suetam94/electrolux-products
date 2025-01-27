@@ -9,7 +9,8 @@
           <p class="text-electrolux-dark-gray text-sm sm:text-lg mb-1 sm:mb-2">
             <span class="font-bold">Categoria:</span> {{ product.category }}
           </p>
-          <p class="text-electrolux-blue text-lg sm:text-xl font-bold mb-2 sm:mb-4">R$ {{ product.price | numberToPtBr }}</p>
+          <p class="text-electrolux-dark-gray text-sm sm:text-lg mb-1 sm:mb-2"><span class="font-bold">Criado em:</span> {{ product.createdAt | date: 'dd/MM/yyyy' }}</p>
+          <p class="text-electrolux-blue text-lg sm:text-xl font-bold mb-2 sm:mb-4"><span class="font-bold">Preço:</span> R$ {{ product.price | numberToPtBr }}</p>
           <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
             <!-- Botão Atualizar -->
             <button

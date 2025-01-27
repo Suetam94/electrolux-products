@@ -6,12 +6,19 @@ import { ProductService } from '../../../services/product.service';
 import { NewProductModalFormComponent } from '../new-product-modal-form/new-product-modal-form.component';
 import { FeedbackModalModel } from '../../../models/feedback-modal.model';
 import { FeedbackModalComponent } from '../feedback-modal/feedback-modal.component';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-product-details-modal',
   templateUrl: './product-details-modal.component.html',
   styleUrls: ['./product-details-modal.component.scss'],
-  imports: [NumberToPtBrPipe, ConfirmationModalComponent, NewProductModalFormComponent, FeedbackModalComponent],
+  imports: [
+    NumberToPtBrPipe,
+    ConfirmationModalComponent,
+    NewProductModalFormComponent,
+    FeedbackModalComponent,
+    DatePipe,
+  ],
 })
 export class ProductDetailsModalComponent {
   @Input() product!: Product;

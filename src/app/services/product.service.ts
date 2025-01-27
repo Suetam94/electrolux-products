@@ -25,7 +25,6 @@ export class ProductService {
     });
   }
 
-
   filterProductsByName(name: string): void {
     if (name.trim() === '') {
       this.productsSource.next(this.allProducts);
@@ -49,7 +48,6 @@ export class ProductService {
       }),
     );
   }
-
 
   updateProduct(product: Product): Subject<'success' | 'error'> {
     const resultSubject = new Subject<'success' | 'error'>();

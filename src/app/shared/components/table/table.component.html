@@ -46,7 +46,11 @@
     </button>
   </div>
 } @else {
-  <app-no-data [message]="'Nenhum produto encontrado para exibição. Crie um novo produto ou verifique sua conexão com o banco de dados.'"></app-no-data>
+  <app-no-data
+    [message]="
+      'Nenhum produto encontrado para exibição. Crie um novo produto ou verifique sua conexão com o banco de dados.'
+    "
+  ></app-no-data>
 }
 
 <app-product-details-modal
@@ -54,3 +58,5 @@
   [product]="selectedProduct!"
   (close)="closeModal()"
 ></app-product-details-modal>
+
+<app-loading [isLoading]="isLoading"></app-loading>

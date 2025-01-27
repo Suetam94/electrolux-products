@@ -6,7 +6,8 @@ import { ProductService } from '../../../services/product.service';
 import { NewProductModalFormComponent } from '../new-product-modal-form/new-product-modal-form.component';
 import { FeedbackModalModel } from '../../../models/feedback-modal.model';
 import { FeedbackModalComponent } from '../feedback-modal/feedback-modal.component';
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-product-details-modal',
@@ -18,6 +19,7 @@ import {DatePipe} from '@angular/common';
     NewProductModalFormComponent,
     FeedbackModalComponent,
     DatePipe,
+    LoadingComponent,
   ],
 })
 export class ProductDetailsModalComponent {
@@ -33,6 +35,8 @@ export class ProductDetailsModalComponent {
     close: () => this.onFeedbackModalClose(),
     type: 'success',
   };
+
+  isLoading = false;
 
   constructor(private productService: ProductService) {}
 
@@ -52,6 +56,7 @@ export class ProductDetailsModalComponent {
   }
 
   onSaveProduct(product: Product): void {
+    this.isLoading = true;
     this.productService.updateProduct(product).subscribe((status) => {
       if (status === 'success') {
         this.feedbackModalProperties = {
@@ -76,6 +81,7 @@ export class ProductDetailsModalComponent {
       }
     });
     this.isFormModalOpen = false;
+    this.isLoading = false;
   }
 
   closeModal(): void {
@@ -92,6 +98,7 @@ export class ProductDetailsModalComponent {
   }
 
   deleteProduct(): void {
+    this.isLoading = true;
     this.isDetailsModalOpen = false;
     if (this.productToDelete) {
       this.productService.deleteProduct(this.productToDelete.id).subscribe({
@@ -121,5 +128,6 @@ export class ProductDetailsModalComponent {
       });
     }
     this.closeConfirmationModal();
+    this.isLoading = false;
   }
 }

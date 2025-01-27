@@ -78,7 +78,7 @@ Isso iniciará o servidor de testes e exibirá os resultados diretamente no term
   ![Formulário_Produtos](./assets/screenshots/form-desktop.png)
   ![Formulário_Produtos](./assets/screenshots/form-mobile.png)
 5. Feedbacks de Processos
-  Modal com feedback da operação realizada.
+  Modal com feedback da operação realizada.  
   ![Modal_Feedback](./assets/screenshots/feedback-success.png)
   ![Modal_Feedback](./assets/screenshots/feedback-error.png)
 6. Paginação:

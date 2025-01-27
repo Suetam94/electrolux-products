@@ -1,4 +1,3 @@
-
 import { CeilPipe } from './ceil.pipe';
 
 describe('CeilPipe', () => {

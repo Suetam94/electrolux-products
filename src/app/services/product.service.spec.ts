@@ -59,7 +59,13 @@ describe('ProductService', () => {
   });
 
   it('should create a product', (done) => {
-    const newProduct: Product = { id: 3, name: 'Product 3', category: 'Category 3', price: 300, createdAt: new Date().toISOString() };
+    const newProduct: Product = {
+      id: 3,
+      name: 'Product 3',
+      category: 'Category 3',
+      price: 300,
+      createdAt: new Date().toISOString(),
+    };
     const updatedProductList: Product[] = [
       { id: 1, name: 'Product 1', category: 'Category 1', price: 100, createdAt: new Date().toISOString() },
       { id: 2, name: 'Product 2', category: 'Category 2', price: 200, createdAt: new Date().toISOString() },
@@ -87,7 +93,6 @@ describe('ProductService', () => {
     });
   });
 
-
   it('should update a product', (done) => {
     const initialProducts: Product[] = [
       { id: 1, name: 'Product 1', category: 'Category 1', price: 100, createdAt: new Date().toISOString() },
@@ -95,7 +100,13 @@ describe('ProductService', () => {
     ];
     service['allProducts'] = initialProducts;
 
-    const updatedProduct: Product = { id: 1, name: 'Updated Product 1', category: 'Category 1', price: 150, createdAt: new Date().toISOString() };
+    const updatedProduct: Product = {
+      id: 1,
+      name: 'Updated Product 1',
+      category: 'Category 1',
+      price: 150,
+      createdAt: new Date().toISOString(),
+    };
 
     service.updateProduct(updatedProduct).subscribe((status) => {
       expect(status).toBe('success');
@@ -106,7 +117,7 @@ describe('ProductService', () => {
     req.flush(updatedProduct);
 
     service.products$.subscribe((products) => {
-      expect(products.find(p => p.id === updatedProduct.id)?.name).toBe(updatedProduct.name); // Confirma pelo nome atualizado
+      expect(products.find((p) => p.id === updatedProduct.id)?.name).toBe(updatedProduct.name); // Confirma pelo nome atualizado
       done();
     });
   });
@@ -127,7 +138,7 @@ describe('ProductService', () => {
 
     service.products$.subscribe((products) => {
       expect(products.length).toBe(1);
-      expect(products.find(p => p.id === 1)).toBeUndefined();
+      expect(products.find((p) => p.id === 1)).toBeUndefined();
       done();
     });
   });

@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainComponent } from './main.component';
 import { NewProductModalFormComponent } from '../new-product-modal-form/new-product-modal-form.component';
 import { TableComponent } from '../table/table.component';
-import {By} from '@angular/platform-browser';
-import {provideHttpClient} from '@angular/common/http';
+import { By } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -11,12 +11,8 @@ describe('MainComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        MainComponent,
-        NewProductModalFormComponent,
-        TableComponent,
-      ],
-      providers: [provideHttpClient()]
+      imports: [MainComponent, NewProductModalFormComponent, TableComponent],
+      providers: [provideHttpClient()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MainComponent);

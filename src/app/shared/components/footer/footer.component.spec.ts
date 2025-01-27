@@ -26,8 +26,9 @@ describe('FooterComponent', () => {
   });
 
   it('should contain a LinkedIn link with correct attributes', () => {
-    const linkedInLink = fixture.debugElement.query(By.css('a[href="https://www.linkedin.com/in/mateus-vin%C3%ADcius-da-silva-8156301a5/"]'))
-      .nativeElement;
+    const linkedInLink = fixture.debugElement.query(
+      By.css('a[href="https://www.linkedin.com/in/mateus-vin%C3%ADcius-da-silva-8156301a5/"]'),
+    ).nativeElement;
 
     expect(linkedInLink).toBeTruthy();
     expect(linkedInLink.getAttribute('target')).toBe('_blank');
@@ -35,12 +36,9 @@ describe('FooterComponent', () => {
     expect(linkedInLink.textContent.trim()).toBe('LinkedIn');
   });
 
-
-
   it('should contain a Portfolio link with correct attributes', () => {
     const portfolioLink = fixture.debugElement.query(By.css('a[href="https://me-zeta-ivory.vercel.app/home"]'));
 
     expect(portfolioLink).toBeTruthy();
   });
-
 });

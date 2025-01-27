@@ -32,7 +32,7 @@ describe('ProductDetailsModalComponent', () => {
 
   it('should render the details modal when isDetailsModalOpen is true', () => {
     component.isDetailsModalOpen = true;
-    component.product = { id: 1, name: 'Produto Teste', category: 'Categoria Teste', price: 100 };
+    component.product = { id: 1, name: 'Produto Teste', category: 'Categoria Teste', price: 100, createdAt: new Date().toISOString() };
     fixture.detectChanges();
 
     const modalElement = fixture.debugElement.query(By.css('.fixed'));

@@ -160,6 +160,13 @@
       "category": "Peças e Acessórios",
       "price": 155,
       "createdAt": "2025-01-27T12:40:10.426Z"
+    },
+    {
+      "id": "5cf3",
+      "name": "Geladeira Portátil",
+      "category": "Eletrodomésticos",
+      "price": 550,
+      "createdAt": "2025-01-27T15:05:31.979Z"
     }
   ]
 }

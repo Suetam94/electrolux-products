@@ -92,4 +92,6 @@
   (close)="feedbackModalProperties.close()"
 ></app-feedback-modal>
 
-<app-loading [isLoading]="isLoading"></app-loading>
+@if (isLoading) {
+  <app-loading [isLoading]="isLoading"></app-loading>
+}

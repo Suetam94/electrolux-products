@@ -52,6 +52,7 @@ export class ProductDetailsModalComponent {
 
   onFeedbackModalClose(): void {
     this.feedbackModalProperties.isOpen = false;
+    this.isLoading = false;
     this.closeModal();
   }
 
@@ -80,8 +81,8 @@ export class ProductDetailsModalComponent {
         this.close.emit();
       }
     });
-    this.isFormModalOpen = false;
     this.isLoading = false;
+    this.isFormModalOpen = false;
   }
 
   closeModal(): void {
@@ -106,7 +107,7 @@ export class ProductDetailsModalComponent {
           this.feedbackModalProperties = {
             isOpen: true,
             type: 'success',
-            message: `Produto ${this.productToDelete?.name} deletado com sucesso!`,
+            message: `Produto ${this.product.name} deletado com sucesso!`,
             close: () => {
               this.onFeedbackModalClose();
             },

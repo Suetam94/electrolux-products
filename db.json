@@ -141,13 +141,6 @@
       "createdAt": "2025-01-07T12:45:00.000Z"
     },
     {
-      "id": "1f5c",
-      "name": "Grapes",
-      "category": "Utilidades domésticas",
-      "price": 350,
-      "createdAt": "2025-01-27T12:28:32.095Z"
-    },
-    {
       "id": "c183",
       "name": "Fritadeira Elétrica",
       "category": "Eletroportáteis",
@@ -162,11 +155,11 @@
       "createdAt": "2025-01-27T12:40:10.426Z"
     },
     {
-      "id": "5cf3",
-      "name": "Geladeira Portátil",
+      "id": "6012",
+      "name": "Aspirador de Pó",
       "category": "Eletrodomésticos",
-      "price": 550,
-      "createdAt": "2025-01-27T15:05:31.979Z"
+      "price": 358,
+      "createdAt": "2025-01-27T20:15:37.450Z"
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 ## Descrição do Projeto
 
-Este projeto é uma aplicação Angular desenvolvida como parte da prova técnica para o cargo de Analista Senior – Front-End da Electrolux. 
+Este projeto é uma aplicação Angular 19 desenvolvida como parte da prova técnica para o cargo de Analista Senior – Front-End da Electrolux. 
 O objetivo é exibir e gerenciar uma lista de produtos, permitindo listagem, filtragem, adição, atualização, deleção e visualização de detalhes dos produtos,
 utilizando boas práticas de desenvolvimento Angular.
 

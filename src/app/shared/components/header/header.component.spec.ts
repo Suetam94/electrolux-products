@@ -34,7 +34,7 @@ describe('HeaderComponent', () => {
     const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
 
     expect(inputElement).toBeTruthy();
-    expect(inputElement.getAttribute('placeholder')).toBe('O que você procura?');
+    expect(inputElement.getAttribute('placeholder')).toBe('Filtrar por nome');
     expect(buttonElement).toBeTruthy();
   });
 

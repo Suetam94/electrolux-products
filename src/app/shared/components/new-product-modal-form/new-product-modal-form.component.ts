@@ -68,7 +68,7 @@ export class NewProductModalFormComponent implements OnChanges {
       if (this.editMode) {
         const updateProduct = { ...this.product, ...this.productForm.value };
         this.save.emit(updateProduct);
-        this.isLoading = false
+        this.isLoading = false;
         return;
       }
 
@@ -104,7 +104,7 @@ export class NewProductModalFormComponent implements OnChanges {
             this.close.emit();
           },
         };
-      }
+      },
     });
     this.closeModal();
   }
